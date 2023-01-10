@@ -7,6 +7,6 @@ carpeta carga de datos y el proyecto en la carpeta aplicacionweb. En esa carpeta
 para ejecutar el codigo en django se necesitara usar el comando "python manage.py runserver" o en su defecto "py manage.py runserver",
 el codigo de carga de datos contiene un notebook de jupyter para cargar los datos.
 En todo el proyecto se utiliza la base de datos postgres por lo tanto si se va a utilizar otra base ded datos deberemos cambiar algunos lineas de la carga de datos y en la configuracion del proyecto.
-
+tambien se utiliza un geoserver en localhost.
 
 
