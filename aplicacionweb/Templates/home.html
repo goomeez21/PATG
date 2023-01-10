@@ -1,0 +1,73 @@
+
+{% include '_partial.html' %}
+<title>Cheap Beer</title>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div id="map" class="col-sm-8"></div>
+            
+            <div class="col-sm-5"></div>
+        </div>
+    </div>
+
+{% include '_footer.html' %}
+
+</body>
+    
+    <style>
+        #map {
+            height: 85%;
+            width: 100%;
+        }
+    </style>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="">
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+
+
+<!-- Mapbox GL -->
+<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js"></script>
+<script src="https://unpkg.com/mapbox-gl-leaflet/leaflet-mapbox-gl.js"></script>
+<script src=  "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>  
+{% load static %}
+<script src="{% static 'geoserver.js' %}" ></script>
+
+    
+    <script>
+        var map = L
+            .map('map',{
+              minZoom: 15,
+		          maxZoom: 18
+            })
+            .setView([
+                40.41706, -3.7035
+            ], 17);
+           L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            })
+            .addTo(map);
+
+            L.control.scale().addTo(map);
+            var wmsLayer =L.tileLayer.wms('http://localhost:8080/geoserver/blog/wms',{
+            layers:'precioLocal',
+            format:'image/png',
+            transparent:true
+        }).addTo(map);
+
+        var wmsinfo =L.tileLayer.betterWms('http://localhost:8080/geoserver/blog/wms', {
+        layers: 'precioLocal',
+        transparent: true,
+        format: 'image/png'
+      }).addTo(map);
+      map.locate({setView: true, maxZoom: 17});
+      
+
+        
+    </script>
+    
+
+</html>

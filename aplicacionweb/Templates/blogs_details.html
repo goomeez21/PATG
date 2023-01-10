@@ -1,0 +1,82 @@
+{% include '_partial.html' %}
+<title>Detalles Restaurantes</title>
+{% csrf_token %} 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet-src.js"></script>
+
+    
+    <div class="container-fluid">
+        <table class="table ">
+            <thead>
+            <tr>
+            <th style="width:5%; font-size:2em;">Local:</th>
+            <th style="font-size:2em;">{{post.nombre}}</th>
+            <th></th>
+        </tr>
+        </thead>
+        </table>
+    <div class="row">        
+        <div  class="col-sm-7"><div id="map"></div></div>
+        <div  class="col-sm-5">            
+            <table class="table table-hover">
+                    {% if lon == 0 %} 
+                    <tr>
+                    <th>no hay datos de este bar/restaurante </th>
+                    <th></th>
+                    <th></th>
+                    </tr>
+                    {% else %}      
+                    <thead>
+                        <tr>
+                            <th>Producto&nbsp;&nbsp;</th>
+                            <th>Precio&nbsp;&nbsp;</th>
+                            <th>Fecha&nbsp;&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for precio in precios %}
+                    
+                        <tr>
+                            <th><p>{{precio.productos_id}}</p></th>
+                            <th><p>{{precio.precio}}</p></th>
+                            <th><p>{{precio.dia}}</p></th>
+                        </tr>
+                        
+                        {%endfor%}
+                    </tbody>
+                    {% endif %}
+
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+    <style>
+        #map {
+            height: 80%;
+            width: 100%;
+        }
+    </style>
+
+<script src="https://jjimenezshaw.github.io/Leaflet.UTM/L.LatLng.UTM.js"></script>
+<script>
+    var utm= L.utm({{post.strlon.0}} ,{{post.strlon.1}},"30","N");
+    var coord=utm.latLng();
+
+    var map =new  L.map('map',{
+            
+            
+            minZoom: 0,
+            maxZoom:19,
+            center: coord,
+            zoom:17
+        });
+        var layerRasterIgn = new L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 30,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    var punto=L.marker(coord).addTo(map);
+</script>
+
+{% include '_footer.html' %}
