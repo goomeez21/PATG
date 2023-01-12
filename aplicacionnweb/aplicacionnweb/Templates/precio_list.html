@@ -1,0 +1,27 @@
+{% include '_partial.html' %}
+<title>lista</title>
+<table class="table table-hover">
+    <tr>
+        <th>RESTAURANTE</th>
+        <th>PRECIO</th>
+        <th>FECHA</th>
+        <th>PRODUCTO</th>
+    </tr>
+{% for precio in precios %}
+<tr>
+    <td>
+        {{precio.local.nombre}}</a>
+    </td>
+    <td>
+       {{precio.precio}}</a>
+    </td>
+    <td>
+       {{precio.dia}}</a>
+    </td>
+    <td>
+        {{precio.productos}}</a>
+    </td>
+    
+    </tr>
+{%endfor%}
+</table>

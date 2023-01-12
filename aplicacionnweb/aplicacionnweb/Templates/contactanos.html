@@ -1,0 +1,47 @@
+{% include '_partial.html' %}
+
+<title>Contacto</title>
+<div class="container">
+    <h1>Contacta con nosotros!!</h1>
+    <h4 style="margin-top:3%;">Notifícanos cualquier incidencia que hayas detectado o cualquier comentario que creas que sirva para mejorar la página.</h4>
+    <br>
+    <form class="contactanos" id="contactanos" method="post" action="{% url 'contactanos' %}">
+        {% csrf_token %} 
+        <p>
+            <td>
+                <label for="id_email">Introduce tu dirección de correo electrónico:</label>
+            </td>
+        </p>
+        <p>
+            <td>
+                <input style="color:black;" type="email" name="email" maxlength="254" required id="id_email">
+            </td>
+        </p>
+        <p>
+            <td>
+                <br>
+                <label for="id_subject" >Asunto del correo:</label>
+            </td>
+        </p>
+        <p>
+            <td>
+                <input type="text" style="color:black;" name="subject" maxlength="255" required id="id_subject">
+            </td>
+        </p>
+        <p>
+            <td>
+                <br>
+                <label for="id_message">Message:</label>
+            </td>
+        </p>
+        <p>
+            <td>
+                <textarea name="message"  style="color:black;" cols="60%" rows="8%" required id="id_message"></textarea>
+            </td>
+        </p>
+    
+        <button type="submit" class="btn mt-4">enviar</button>
+    </form>
+</div>
+   
+{% include '_footer.html' %}
