@@ -1,0 +1,15 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Registro cerrado" %}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+<h1>{% trans "Registro cerrado" %}</h1>
+
+<p>{% trans "Lo sentimos pero el registro se encuentra cerrado en estos momentos." %}</p>
+</div>
+{% include '_footer.html' %}
+{% endblock %}

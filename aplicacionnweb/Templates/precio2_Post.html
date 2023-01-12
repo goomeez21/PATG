@@ -1,0 +1,35 @@
+{% include '_partial.html' %}
+<title>Colabora</title>
+<div class="container">
+<h1>Colabora</h1>
+<br>
+<form method="Post">
+    {% csrf_token %} 
+    <p>
+        <label for="Local">local:</label>
+        <input style="color:black;" name="local" type="hidden" value="{{local}}">
+        {{local.nombre}}
+    <p>
+        <p>
+            <label for="id_precio">Precio:</label>
+            <input style="color:black;" type="number" name="precio" step="any" required id="id_precio">
+            
+            
+          </p>
+        
+          
+          <p>
+            <label for="id_productos">Productos:</label>
+            <select style="color:black;" name="productos" required id="id_productos">
+                
+          <option value="" selected>---------</option>
+          {% for producto in Productos %}
+          <option value="{{producto}}">{{producto}}</option>
+          {%endfor%}
+        
+        </select>
+    </p>
+    <button type="submit" class="btn btn-primary">Subir</button>
+    </form> 
+         
+</div>
